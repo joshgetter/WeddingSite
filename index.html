@@ -10,6 +10,16 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css" rel="stylesheet" />
+		<!-- Map Styling -->
+		<style>
+			.mapboxgl-canvas{
+				position: unset!important;
+			}
+			#map{
+				height: 500px;
+			}
+		</style>
 	</head>
 	<body>
 
@@ -44,22 +54,17 @@
 			</section>
 
 		<!-- One -->
-			<section id="one" class="wrapper post bg-img" data-bg="banner2.jpg">
+			<section id="one" class="wrapper post bg-img" data-bg="skating.jpg">
 				<div class="inner">
-					<article class="box">
 						<header>
-							<h2>Nibh non lobortis mus nibh</h2>
-							<p>01.01.2017</p>
+							<h1>Join Us</h1>
+							<h2>July 27th, 2019</h2>
+							<p>Witts Inn and Cafe</p>
 						</header>
 						<div class="content">
-							<p>Scelerisque enim mi curae erat ultricies lobortis donec velit in per cum consectetur purus a enim platea vestibulum lacinia et elit ante scelerisque vestibulum. At urna condimentum sed vulputate a duis in senectus ullamcorper lacus cubilia consectetur odio proin sociosqu a parturient nam ac blandit praesent aptent. Eros dignissim mus mauris a natoque ad suspendisse nulla a urna in tincidunt tristique enim arcu litora scelerisque eros suspendisse.</p>
+							<div id="map"></div>
 						</div>
-						<footer>
-							<a href="generic.html" class="button alt">Learn More</a>
-						</footer>
-					</article>
 				</div>
-				<a href="#two" class="more">Learn More</a>
 			</section>
 
 		<!-- Footer -->
@@ -107,6 +112,50 @@
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js"></script>
+		<script>
+                mapboxgl.accessToken = 'pk.eyJ1Ijoiam9zaGdldHRlciIsImEiOiJjanM4N3pmb20waG0zNGFwOHJ5cG1idmdlIn0.sFqAhQGlkmCKDQRoaKU1CQ';
+                /* Map: This represents the map on the page. */
+                var map = new mapboxgl.Map({
+                    container: "map",
+                    style: "mapbox://styles/joshgetter/cjs8ceepk1mmx1fs0ebgbk5i7",
+                    zoom: 14.18,
+                    center: [-85.3755,43.0108]
+                });
+
+                map.on("load", function () {
+                    /* Image: An image is loaded and added to the map. */
+                    map.loadImage("https://i.imgur.com/MK4NUzI.png", function(error, image) {
+                        if (error) throw error;
+                        map.addImage("custom-marker", image);
+                        /* Style layer: A style layer ties together the source and image and specifies how they are displayed on the map. */
+                        map.addLayer({
+                            id: "markers",
+                            type: "symbol",
+                            /* Source: A data source specifies the geographic coordinate where the image marker gets placed. */
+                            source: {
+                                type: "geojson",
+                                data: {
+                                    type: 'FeatureCollection',
+                                    features: [
+                                        {
+                                            type: 'Feature',
+                                            properties: {},
+                                            geometry: {
+                                                type: "Point",
+                                                coordinates: [-85.3712, 43.0116]
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            layout: {
+                                "icon-image": "custom-marker",
+                            }
+                        });
+                    });
+                });
+			</script>
 
 	</body>
 </html>
