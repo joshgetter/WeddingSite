@@ -65,7 +65,7 @@
 
 					<h2>Share With Us</h2>
 
-					<form action="#" method="post">
+					<form id="shareForm" action="#" enctype="multipart/form-data">
 
 						<div class="field first">
 							<label for="name">Name</label>
@@ -77,10 +77,10 @@
 						</div>
 						<div class="field">
 							<label for="media">Photo/Video</label>
-							<input name="media" id="media" type="file" placeholder="Photo/Video"></input>
+							<input name="media" id="media" type="file" placeholder="Photo/Video" multiple></input>
 						</div>
 						<ul class="actions">
-							<li><input value="Share" class="button alt" type="submit"></li>
+							<li><input id="shareButton" value="Share" class="button alt" type="submit"></li>
 						</ul>
 					</form>
 
@@ -105,6 +105,22 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 			<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js"></script>
+		<script>
+			// Upload handler
+			$('#shareForm').submit(function (event) {
+                console.log('Upload starting...');
+                event.preventDefault();
+                $.ajax({
+                    url: 'http://localhost:5000/UploadMedia',
+                    type: 'POST',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: new FormData($('#shareForm')[0])
+                })
+            });
+
+		</script>
 		<script>
                 mapboxgl.accessToken = 'pk.eyJ1Ijoiam9zaGdldHRlciIsImEiOiJjanM4N3pmb20waG0zNGFwOHJ5cG1idmdlIn0.sFqAhQGlkmCKDQRoaKU1CQ';
                 /* Map: This represents the map on the page. */
