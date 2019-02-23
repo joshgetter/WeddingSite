@@ -50,8 +50,7 @@
 				<div class="inner">
 						<header>
 							<h1>Join Us</h1>
-							<h2>July 27th, 2019</h2>
-							<p>Witts Inn and Cafe</p>
+							<h2>Witts Inn and Cafe</h2>
 						</header>
 						<div class="content">
 							<div id="map"></div>
@@ -127,8 +126,10 @@
                 var map = new mapboxgl.Map({
                     container: "map",
                     style: "mapbox://styles/joshgetter/cjs8ceepk1mmx1fs0ebgbk5i7",
-                    zoom: 14.18,
-                    center: [-85.3755,43.0108]
+                    zoom: 8.42,
+                    center: [-85.305499,43.040706],
+					pitch: 31.00,
+					scrollZoom: false
                 });
 
                 map.on("load", function () {
