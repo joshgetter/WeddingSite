@@ -21,6 +21,26 @@
 				height: 500px;
 			}
 		</style>
+		<style>
+			#progress {
+				width: 100%;
+				visibility: hidden;
+				background-color: transparent;
+				border-color: #d6d6d6;
+				border-style: dashed;
+				border-width: 2px;
+
+			}
+			#progressBar {
+				width: 0%;
+				height: 30px;
+				background-color: antiquewhite;
+				margin: 2px;
+				text-align: center;
+				line-height: 30px;
+				color: white;
+			}
+		</style>
 	</head>
 	<body>
 
@@ -81,6 +101,9 @@
 						<ul class="actions">
 							<li><input id="shareButton" value="Share" class="button alt" type="submit"></li>
 						</ul>
+						<div id="progress">
+							<div id="progressBar"></div>
+						</div>
 					</form>
 
 					<ul class="icons">
@@ -109,16 +132,42 @@
 			$('#shareForm').submit(function (event) {
                 console.log('Upload starting...');
                 event.preventDefault();
-                $.ajax({
-                    url: 'https://goinggetter.azurewebsites.net/UploadMedia',
-                    type: 'POST',
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: new FormData($('#shareForm')[0])
-                })
+                // Only upload if input contains media.
+                if($('#media').val()){
+                    $.ajax({
+                        url: 'http://localhost:5000/UploadMedia',
+                        type: 'POST',
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: new FormData($('#shareForm')[0]),
+                        xhr: function() {
+                            var myXhr = $.ajaxSettings.xhr();
+                            if(myXhr.upload){
+                                myXhr.upload.addEventListener('progress',progress, false);
+                            }
+                            return myXhr;
+                        },
+                        success: function(response) {
+                            console.log("Upload complete!");
+                        }
+                    })
+					// Show upload progress bar
+                    $("#progress").css('visibility', 'visible');
+                }
             });
+            function progress(e){
 
+                if(e.lengthComputable){
+                    var max = e.total;
+                    var current = e.loaded;
+
+                    var percentage = ((current * 100)/max);
+                    console.log(percentage);
+                    $('#progressBar').width(percentage + '%');
+                    $('#progressBar').text(Math.round(percentage) + '%');
+                }
+            }
 		</script>
 		<script>
                 mapboxgl.accessToken = 'pk.eyJ1Ijoiam9zaGdldHRlciIsImEiOiJjanM4N3pmb20waG0zNGFwOHJ5cG1idmdlIn0.sFqAhQGlkmCKDQRoaKU1CQ';
