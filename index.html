@@ -24,7 +24,6 @@
 		<style>
 			#progress {
 				width: 100%;
-				visibility: hidden;
 				background-color: transparent;
 				border-color: #d6d6d6;
 				border-style: dashed;
@@ -98,11 +97,10 @@
 							<label for="media">Photo/Video</label>
 							<input name="media" id="media" type="file" placeholder="Photo/Video" multiple></input>
 						</div>
-						<ul class="actions">
+						<div id="shareContainer">
+							<ul class="actions">
 							<li><input id="shareButton" value="Share" class="button alt" type="submit"></li>
 						</ul>
-						<div id="progress">
-							<div id="progressBar"></div>
 						</div>
 					</form>
 
@@ -128,14 +126,29 @@
 			<script src="assets/js/main.js"></script>
 			<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js"></script>
 		<script>
+			// Constants
+			var SERVERROOT = 'https://goinggetter.azurewebsites.net';
+
+			// On load
+			$(document).ready(function(){
+			    // Determine if server is active.
+                $.get( SERVERROOT + '/IsActive', function(data) {
+                    if(data != true){
+                        setUploadErrorMessage('Media sharing is not currently enabled.');
+					}
+                }).fail(function(){
+                    setUploadErrorMessage('Media sharing is not currently enabled.');
+				})
+			});
+
 			// Upload handler
 			$('#shareForm').submit(function (event) {
-                console.log('Upload starting...');
                 event.preventDefault();
                 // Only upload if input contains media.
                 if($('#media').val()){
+                    console.log('Upload starting...');
                     $.ajax({
-                        url: 'http://localhost:5000/UploadMedia',
+                        url: SERVERROOT + '/UploadMedia',
                         type: 'POST',
                         cache: false,
                         contentType: false,
@@ -150,10 +163,13 @@
                         },
                         success: function(response) {
                             console.log("Upload complete!");
-                        }
+                        },
+						error:  function(xhr, textStatus, errorThrown){
+                            setUploadErrorMessage('An error occurred.  Please try again.');
+						}
                     })
 					// Show upload progress bar
-                    $("#progress").css('visibility', 'visible');
+                    toggleProgressDisplay();
                 }
             });
             function progress(e){
@@ -166,8 +182,41 @@
                     console.log(percentage);
                     $('#progressBar').width(percentage + '%');
                     $('#progressBar').text(Math.round(percentage) + '%');
+
+                    if(percentage >= 100){
+                        $('#progressBar').text('Upload Complete.');
+                        setTimeout(toggleProgressDisplay, 2000);
+					}
                 }
             }
+
+            function toggleProgressDisplay() {
+				var submitHtml = "<ul class=\"actions\">" +
+                    "<li><input id=\"shareButton\" value=\"Share\" class=\"button alt\" type=\"submit\"></li>";
+				var progressHtml = "<div id=\"progress\">" +
+                    "<div id=\"progressBar\"></div>" +
+                    "</div>"
+
+				if($('#shareButton').length){
+				    $('#shareContainer').html(progressHtml);
+				}else{
+				    $('#shareContainer').html(submitHtml);
+				}
+            }
+
+            function setUploadErrorMessage(text){
+                // Ensure that progress section is visible
+                var progressHtml = "<div id=\"progress\">" +
+                    "<div id=\"progressBar\"></div>" +
+                    "</div>"
+				$('#shareContainer').html(progressHtml);
+                // Set width
+                $('#progressBar').width('100%');
+                // Change color
+				$('#progressBar').css('background-color', 'transparent');
+				// Set text
+				$('#progressBar').text(text);
+			}
 		</script>
 		<script>
                 mapboxgl.accessToken = 'pk.eyJ1Ijoiam9zaGdldHRlciIsImEiOiJjanM4N3pmb20waG0zNGFwOHJ5cG1idmdlIn0.sFqAhQGlkmCKDQRoaKU1CQ';
