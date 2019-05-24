@@ -5,264 +5,320 @@
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
 <html>
-	<head>
-		<title>Going Getter</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css" rel="stylesheet" />
-		<link rel="icon" href="images/icon.png"/>
-		<!-- Map Styling -->
-		<style>
-			.mapboxgl-canvas{
-				position: unset!important;
-			}
-			#map{
-				height: 500px;
-			}
-		</style>
-		<style>
-			#progress {
-				width: 100%;
-				background-color: transparent;
-				border-color: #d6d6d6;
-				border-style: dashed;
-				border-width: 2px;
+<head>
+    <title>Going Getter</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="assets/css/main.css"/>
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css" rel="stylesheet"/>
+    <link rel="icon" href="images/icon.png"/>
+    <!-- Map Styling -->
+    <style>
+        .mapboxgl-canvas {
+            position: unset !important;
+        }
 
-			}
-			#progressBar {
-				width: 0%;
-				height: 30px;
-				background-color: antiquewhite;
-				margin: 2px;
-				text-align: center;
-				line-height: 30px;
-				color: white;
-			}
-		</style>
-	</head>
-	<body>
+        #map {
+            height: 500px;
+        }
+    </style>
+    <style>
+        #progress {
+            width: 100%;
+            background-color: transparent;
+            border-color: #d6d6d6;
+            border-style: dashed;
+            border-width: 2px;
 
-		<!-- Header -->
-			<header id="header">
-				<div class="logo"><a href="index.html">Going Getter</a></div>
-                <a class="button scrolly alt" href="#footer">Share</a>
-			</header>
+        }
 
-		<!-- Banner -->
-		<!--
-			Note: To show a background image, set the "data-bg" attribute below
-			to the full filename of your image. This is used in each section to set
-			the background image.
-		-->
-			<section id="banner" class="bg-img" data-bg="NewYears.png">
-				<div class="inner">
-					<header>
-						<h1>Joshua & Casey</h1>
-					</header>
-				</div>
-				<a href="#one" class="more">Learn More</a>
-			</section>
+        #progressBar {
+            width: 0%;
+            height: 30px;
+            background-color: antiquewhite;
+            margin: 2px;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
 
-		<!-- One -->
-		<section id="one" class="wrapper post bg-img" data-bg="skating.jpg">
-				<div class="inner">
-						<header>
-							<h1>Join Us</h1>
-							<h2>Witts Inn and Cafe</h2>
-						</header>
-						<div class="content">
-							<div id="map"></div>
-						</div>
-				</div>
-			</section>
+<!-- Header -->
+<header id="header">
+    <div class="logo"><a href="index.html">Going Getter</a></div>
+    <a class="button scrolly alt" href="#footer">Share</a>
+</header>
 
-		<!-- Footer -->
-			<footer id="footer">
-				<div class="inner">
+<!-- Nav -->
+<nav id="menu">
+    <ul class="links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="generic.html">Generic</a></li>
+        <li><a href="elements.html">Elements</a></li>
+    </ul>
+</nav>
 
-					<h2>Share With Us</h2>
+<!-- Banner -->
+<!--
+    Note: To show a background image, set the "data-bg" attribute below
+    to the full filename of your image. This is used in each section to set
+    the background image.
+-->
+<section id="banner" class="bg-img" data-bg="NewYears.png">
+    <div class="inner">
+        <header>
+            <h1>Joshua & Casey</h1>
+        </header>
+    </div>
+</section>
 
-					<form id="shareForm" action="#" enctype="multipart/form-data">
+<!-- Nav -->
+<nav id="menu">
+    <ul class="links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="generic.html">Generic</a></li>
+        <li><a href="elements.html">Elements</a></li>
+    </ul>
+</nav>
 
-						<div class="field first">
-							<label for="name">Name</label>
-							<input name="name" id="name" type="text" placeholder="Name">
-						</div>
-						<div class="field">
-							<label for="message">Message</label>
-							<textarea name="message" id="message" rows="6" placeholder="Message"></textarea>
-						</div>
-						<div class="field">
-							<label for="media">Photo/Video</label>
-							<input name="media" id="media" type="file" placeholder="Photo/Video" multiple></input>
-						</div>
-						<div id="shareContainer">
-							<ul class="actions">
-							<li><input id="shareButton" value="Share" class="button alt" type="submit"></li>
-						</ul>
-						</div>
-					</form>
+<!-- Details -->
+<section id="one" class="wrapper post bg-img" data-bg="skating.jpg">
+    <div class="container">
+        <header>
+            <h1>Join Us</h1>
+            <h2>Witts Inn and Cafe</h2>
+        </header>
+        <div class="content">
+            <div id="map"></div>
+        </div>
+    </div>
+</section>
 
-					<ul class="icons">
-						<li><a href="#" class="icon round fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon round fa-facebook"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon round fa-instagram"><span class="label">Instagram</span></a></li>
-					</ul>
+<!-- One -->
+<section id="registry" class="wrapper post bg-img" data-bg="engagement.jpg">
+    <div class="inner">
+        <header>
+            <h2>We're Registered!</h2>
+        </header>
+        <div class="box">
+            <div class="row">
+                <div class="4u">
+						<span class="image fit">
+                            <a href="https://www.target.com/gift-registry/giftgiver?registryId=c9a07cc45ec44a7286f7685fe0984c20&type=WEDDING">
+                                <img src="images/targetlogo.png"/>
+                            </a>
+						</span>
+                </div>
+                <div class="4u">
+						<span class="image fit">
+                            <a href="https://www.amazon.com/wedding/casey-cahoon-joshua-getter-lowell-july-2019/registry/3C5P38XWLSVPB">
+                                <img src="images/amazonlogo.png"/>
+                            </a>
+						</span>
+                </div>
+                <div class="4u">
+						<span class="image fit">
+                            <a href="https://www.bedbathandbeyond.com/store/giftRegistry/viewregistryguest/547495618">
+							    <img src="images/bedbathbeyondlogo.png"/>
+                            </a>
+						</span>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+        </div>
+    </div>
+</section>
 
-					<div class="copyright">
-						&copy; Untitled. Design: <a href="https://templated.co">TEMPLATED</a>.
-					</div>
+<!-- Footer -->
+<footer id="footer">
+    <div class="inner">
 
-				</div>
-			</footer>
+        <h2>Share With Us</h2>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-			<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js"></script>
-		<script>
-			// Constants
-			var SERVERROOT = 'http://hounvs.ddns.net:5000';
+        <form id="shareForm" action="#" enctype="multipart/form-data">
 
-			// On load
-			$(document).ready(function(){
-			    // Determine if server is active.
-                $.get( SERVERROOT + '/IsActive', function(data) {
-                    if(data != true){
-                        setUploadErrorMessage('Media sharing is not currently enabled.');
-					}
-                }).fail(function(){
-                    setUploadErrorMessage('Media sharing is not currently enabled.');
-				})
-			});
+            <div class="field first">
+                <label for="name">Name</label>
+                <input name="name" id="name" type="text" placeholder="Name">
+            </div>
+            <div class="field">
+                <label for="message">Message</label>
+                <textarea name="message" id="message" rows="6" placeholder="Message"></textarea>
+            </div>
+            <div class="field">
+                <label for="media">Photo/Video</label>
+                <input name="media" id="media" type="file" placeholder="Photo/Video" multiple></input>
+            </div>
+            <div id="shareContainer">
+                <ul class="actions">
+                    <li><input id="shareButton" value="Share" class="button alt" type="submit"></li>
+                </ul>
+            </div>
+        </form>
 
-			// Upload handler
-			$('#shareForm').submit(function (event) {
-                event.preventDefault();
-                // Only upload if input contains media.
-                if($('#media').val()){
-                    console.log('Upload starting...');
-                    $.ajax({
-                        url: SERVERROOT + '/UploadMedia',
-                        type: 'POST',
-                        cache: false,
-                        contentType: false,
-                        processData: false,
-                        data: new FormData($('#shareForm')[0]),
-                        xhr: function() {
-                            var myXhr = $.ajaxSettings.xhr();
-                            if(myXhr.upload){
-                                myXhr.upload.addEventListener('progress',progress, false);
+        <ul class="icons">
+            <li><a href="#" class="icon round fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon round fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon round fa-instagram"><span class="label">Instagram</span></a></li>
+        </ul>
+
+        <div class="copyright">
+            &copy; Untitled. Design: <a href="https://templated.co">TEMPLATED</a>.
+        </div>
+
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js"></script>
+<script>
+    // Constants
+    var SERVERROOT = 'http://hounvs.ddns.net:5000';
+
+    // On load
+    $(document).ready(function () {
+        // Determine if server is active.
+        $.get(SERVERROOT + '/IsActive', function (data) {
+            if (data != true) {
+                setUploadErrorMessage('Media sharing is not currently enabled.');
+            }
+        }).fail(function () {
+            setUploadErrorMessage('Media sharing is not currently enabled.');
+        })
+    });
+
+    // Upload handler
+    $('#shareForm').submit(function (event) {
+        event.preventDefault();
+        // Only upload if input contains media.
+        if ($('#media').val()) {
+            console.log('Upload starting...');
+            $.ajax({
+                url: SERVERROOT + '/UploadMedia',
+                type: 'POST',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: new FormData($('#shareForm')[0]),
+                xhr: function () {
+                    var myXhr = $.ajaxSettings.xhr();
+                    if (myXhr.upload) {
+                        myXhr.upload.addEventListener('progress', progress, false);
+                    }
+                    return myXhr;
+                },
+                success: function (response) {
+                    console.log("Upload complete!");
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    setUploadErrorMessage('An error occurred.  Please try again.');
+                }
+            })
+            // Show upload progress bar
+            toggleProgressDisplay();
+        }
+    });
+
+    function progress(e) {
+
+        if (e.lengthComputable) {
+            var max = e.total;
+            var current = e.loaded;
+
+            var percentage = ((current * 100) / max);
+            console.log(percentage);
+            $('#progressBar').width(percentage + '%');
+            $('#progressBar').text(Math.round(percentage) + '%');
+
+            if (percentage >= 100) {
+                $('#progressBar').text('Upload Complete.');
+                setTimeout(toggleProgressDisplay, 2000);
+            }
+        }
+    }
+
+    function toggleProgressDisplay() {
+        var submitHtml = "<ul class=\"actions\">" +
+            "<li><input id=\"shareButton\" value=\"Share\" class=\"button alt\" type=\"submit\"></li>";
+        var progressHtml = "<div id=\"progress\">" +
+            "<div id=\"progressBar\"></div>" +
+            "</div>"
+
+        if ($('#shareButton').length) {
+            $('#shareContainer').html(progressHtml);
+        } else {
+            $('#shareContainer').html(submitHtml);
+        }
+    }
+
+    function setUploadErrorMessage(text) {
+        // Ensure that progress section is visible
+        var progressHtml = "<div id=\"progress\">" +
+            "<div id=\"progressBar\"></div>" +
+            "</div>"
+        $('#shareContainer').html(progressHtml);
+        // Set width
+        $('#progressBar').width('100%');
+        // Change color
+        $('#progressBar').css('background-color', 'transparent');
+        // Set text
+        $('#progressBar').text(text);
+    }
+</script>
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1Ijoiam9zaGdldHRlciIsImEiOiJjanM4N3pmb20waG0zNGFwOHJ5cG1idmdlIn0.sFqAhQGlkmCKDQRoaKU1CQ';
+    /* Map: This represents the map on the page. */
+    var map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/joshgetter/cjs8ceepk1mmx1fs0ebgbk5i7",
+        zoom: 8.42,
+        center: [-85.305499, 43.040706],
+        pitch: 31.00,
+        scrollZoom: false
+    });
+
+    map.on("load", function () {
+        /* Image: An image is loaded and added to the map. */
+        map.loadImage("https://i.imgur.com/MK4NUzI.png", function (error, image) {
+            if (error) throw error;
+            map.addImage("custom-marker", image);
+            /* Style layer: A style layer ties together the source and image and specifies how they are displayed on the map. */
+            map.addLayer({
+                id: "markers",
+                type: "symbol",
+                /* Source: A data source specifies the geographic coordinate where the image marker gets placed. */
+                source: {
+                    type: "geojson",
+                    data: {
+                        type: 'FeatureCollection',
+                        features: [
+                            {
+                                type: 'Feature',
+                                properties: {},
+                                geometry: {
+                                    type: "Point",
+                                    coordinates: [-85.3712, 43.0116]
+                                }
                             }
-                            return myXhr;
-                        },
-                        success: function(response) {
-                            console.log("Upload complete!");
-                        },
-						error:  function(xhr, textStatus, errorThrown){
-                            setUploadErrorMessage('An error occurred.  Please try again.');
-						}
-                    })
-					// Show upload progress bar
-                    toggleProgressDisplay();
+                        ]
+                    }
+                },
+                layout: {
+                    "icon-image": "custom-marker",
                 }
             });
-            function progress(e){
+        });
+    });
+</script>
 
-                if(e.lengthComputable){
-                    var max = e.total;
-                    var current = e.loaded;
-
-                    var percentage = ((current * 100)/max);
-                    console.log(percentage);
-                    $('#progressBar').width(percentage + '%');
-                    $('#progressBar').text(Math.round(percentage) + '%');
-
-                    if(percentage >= 100){
-                        $('#progressBar').text('Upload Complete.');
-                        setTimeout(toggleProgressDisplay, 2000);
-					}
-                }
-            }
-
-            function toggleProgressDisplay() {
-				var submitHtml = "<ul class=\"actions\">" +
-                    "<li><input id=\"shareButton\" value=\"Share\" class=\"button alt\" type=\"submit\"></li>";
-				var progressHtml = "<div id=\"progress\">" +
-                    "<div id=\"progressBar\"></div>" +
-                    "</div>"
-
-				if($('#shareButton').length){
-				    $('#shareContainer').html(progressHtml);
-				}else{
-				    $('#shareContainer').html(submitHtml);
-				}
-            }
-
-            function setUploadErrorMessage(text){
-                // Ensure that progress section is visible
-                var progressHtml = "<div id=\"progress\">" +
-                    "<div id=\"progressBar\"></div>" +
-                    "</div>"
-				$('#shareContainer').html(progressHtml);
-                // Set width
-                $('#progressBar').width('100%');
-                // Change color
-				$('#progressBar').css('background-color', 'transparent');
-				// Set text
-				$('#progressBar').text(text);
-			}
-		</script>
-		<script>
-                mapboxgl.accessToken = 'pk.eyJ1Ijoiam9zaGdldHRlciIsImEiOiJjanM4N3pmb20waG0zNGFwOHJ5cG1idmdlIn0.sFqAhQGlkmCKDQRoaKU1CQ';
-                /* Map: This represents the map on the page. */
-                var map = new mapboxgl.Map({
-                    container: "map",
-                    style: "mapbox://styles/joshgetter/cjs8ceepk1mmx1fs0ebgbk5i7",
-                    zoom: 8.42,
-                    center: [-85.305499,43.040706],
-					pitch: 31.00,
-					scrollZoom: false
-                });
-
-                map.on("load", function () {
-                    /* Image: An image is loaded and added to the map. */
-                    map.loadImage("https://i.imgur.com/MK4NUzI.png", function(error, image) {
-                        if (error) throw error;
-                        map.addImage("custom-marker", image);
-                        /* Style layer: A style layer ties together the source and image and specifies how they are displayed on the map. */
-                        map.addLayer({
-                            id: "markers",
-                            type: "symbol",
-                            /* Source: A data source specifies the geographic coordinate where the image marker gets placed. */
-                            source: {
-                                type: "geojson",
-                                data: {
-                                    type: 'FeatureCollection',
-                                    features: [
-                                        {
-                                            type: 'Feature',
-                                            properties: {},
-                                            geometry: {
-                                                type: "Point",
-                                                coordinates: [-85.3712, 43.0116]
-                                            }
-                                        }
-                                    ]
-                                }
-                            },
-                            layout: {
-                                "icon-image": "custom-marker",
-                            }
-                        });
-                    });
-                });
-			</script>
-
-	</body>
+</body>
 </html>
